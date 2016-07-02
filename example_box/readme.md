@@ -1,0 +1,1 @@
+# Vagrant vmpooler example Vagrantfile
