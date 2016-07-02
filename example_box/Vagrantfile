@@ -3,5 +3,6 @@
 
 Vagrant.configure("2") do |config|
   config.vm.provider :vmpooler do |vmpooler|
+    vmpooler.os = "centos-7-x86_64"
   end
 end
