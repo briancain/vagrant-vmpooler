@@ -7,7 +7,7 @@ module VagrantPlugins
         end
 
         def call(env)
-          env[:ui].info("vagrant_vmpooler.already_status", :status => "created")
+          env[:ui].info("This machine has already been created")
           @app.call(env)
         end
       end
