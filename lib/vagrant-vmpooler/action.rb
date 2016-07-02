@@ -51,7 +51,7 @@ module VagrantPlugins
             else
               # obtain new vm
               b1.use action_prepare_boot
-              b1.use RunInstance
+              b1.use CreateInstance
             end
           end
         end
@@ -62,6 +62,10 @@ module VagrantPlugins
       end
 
       # autoload the various actions
+      action_root = Pathname.new(File.expand_path("../action", __FILE__))
+      autoload :IsCreated, action_root.join("is_created")
+      autoload :CreateInstance, action_root.join("create_instance")
+      autoload :TerminateInstance, action_root.join("terminate_instance")
     end
   end
 end
