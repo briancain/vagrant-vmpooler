@@ -12,11 +12,40 @@ module VagrantPlugins
         raise "This action is not supported with vmpooler"
       end
 
+      # This action is called when `vagrant destroy` is called.
       def self.action_destroy
+        Vagrant::Action::Builder.new.tap do |b|
+          b.use Call, DestroyConfirm do |env, b2|
+            if env[:result]
+              b2.use Call, IsCreated do |env2, b3|
+                if !env2[:result]
+                  b3.use MessageNotCreated
+                  next
+                end
+
+                b3.use TerminateInstance
+                b3.use ProvisionerCleanup if defined?(ProvisionerCleanup)
+              end
+            else
+              # wont destroy
+            end
+          end
+        end
       end
 
       # This action is called when `vagrant provision` is called.
       def self.action_provision
+        Vagrant::Action::Builder.new.tap do |b|
+          b.use ConfigValidate
+          b.use Call, IsCreated do |env, b2|
+            if !env[:result]
+              b2.use MessageNotCreated
+              next
+            end
+
+            b2.use Provision
+          end
+        end
       end
 
       # This action is called to SSH into the machine.
@@ -27,7 +56,6 @@ module VagrantPlugins
         Vagrant::Action::Builder.new.tap do |b|
           b.use Provision
           b.use SyncedFolders
-          b.use WarnNetworks
         end
       end
 
@@ -66,6 +94,7 @@ module VagrantPlugins
       autoload :IsCreated, action_root.join("is_created")
       autoload :CreateInstance, action_root.join("create_instance")
       autoload :TerminateInstance, action_root.join("terminate_instance")
+      autoload :MessageAlreadyCreated, action_root.join("message_already_created")
     end
   end
 end
