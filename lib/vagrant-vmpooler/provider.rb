@@ -26,6 +26,8 @@ module VagrantPlugins
         env = @machine.action("read_state")
         state_id = env[:machine_state_id]
 
+        # Maybe extract this out into locales like how other plugins handle this
+        # to avoid a complicated case statement
         short = "vagrant_vmpooler.states.short_#{state_id}"
         long = "vagrant_vmpooler.states.long_#{state_id}"
 
