@@ -3,7 +3,7 @@ require 'yaml'
 
 module VagrantPlugins
   module Vmpooler
-    class Config < Vagrant.plugin("2")
+    class Config < Vagrant.plugin("2", :config)
       # The token used to obtain vms
       #
       # @return [String]
@@ -44,7 +44,7 @@ module VagrantPlugins
       # Internal methods
       # ----------------
 
-      def merge!()
+      def finalize!
         conf_file = {}
         begin
           conf_file = YAML.load_file("#{Dir.home}/.vmfloaty.yml")
@@ -67,8 +67,6 @@ module VagrantPlugins
         @os = UNSET_VALUE
         @ttl = UNSET_VALUE
         @disk = UNSET_VALUE
-
-        merge!
       end
     end
   end
