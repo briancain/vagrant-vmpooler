@@ -14,14 +14,14 @@ module VagrantPlugins
       DESC
 
       config(:vmpooler, :provider) do
-        relative_require "config"
+        require_relative "config"
         Config
       end
 
       provider(:vmpooler, parallel:true) do
         setup_logging
 
-        relative_require 'provider'
+        require_relative 'provider'
         Provider
       end
 
