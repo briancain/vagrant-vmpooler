@@ -35,7 +35,11 @@ module VagrantPlugins
       end
 
       def to_s
-        id = @machine.id.nil? "new" : @machine.id
+        id = "new"
+        if !@machine.id.nil?
+          id = @machine.id
+        end
+
         "Vmpooler (#{id})"
       end
     end
