@@ -1,13 +1,13 @@
 module VagrantPlugins
   module Vmpooler
     module Action
-      class IsCreated
+      class MessageNotCreated
         def initialize(app, env)
           @app = app
         end
 
         def call(env)
-          env[:result] = env[:machine].state.id == :active
+          env[:ui].info(I18n.t("vagrant_vmpooler.not_created"))
           @app.call(env)
         end
       end

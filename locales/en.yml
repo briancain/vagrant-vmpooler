@@ -1,5 +1,5 @@
 en:
-  vagrant_openstack:
+  vagrant_vmpooler:
     already_created: |-
       The server is already created.
     already_paused: |-
@@ -48,10 +48,6 @@ en:
       Waiting for the server to be built...
     waiting_for_ssh: |-
       Waiting for SSH to become available...
-    warn_networks: |-
-      Warning! The OpenStack provider doesn't support any of the Vagrant
-      high-level network configurations (`config.vm.network`). They
-      will be silently ignored.
     will_not_destroy: |-
         The instance '%{name}' will not be destroyed, since the confirmation
         was declined.
@@ -77,10 +73,6 @@ en:
           A disk size is required for all disk specifications.
 
     errors:
-      volume_bad_state: |-
-        The OpenStack volume '%{volume}' requested is in an unexpected state:
-        '%{state}'
-        Please run `vagrant destroy` if you want to start over.
       create_bad_state: |-
         While creating the server, it transitioned to an unexpected
         state: '%{state}', instead of properly booting. Run `vagrant status`
@@ -104,27 +96,8 @@ en:
         debug mode to see a list of networks available to your tenant.
         Then set either `os.network` or `os.address_id` to one of the
         network names.
-      floating_ip_not_valid: |-
-        The floating IP specified in the Vagrantfile does not match an
-        available public IP address returned by OpenStack.
-      floating_ip_not_found: |-
-        A floating IP could not be allocated, as no available floating 
-        IPs were found in OpenStack
-      floating_ip_not_allocated: |-
-        A floating IP could not be allocated from the pool.
-      floating_unassigned_ip_not_found: |-
-        An unassigned floating IP could not be found in the specified pool.
-      floating_ip_failed_associate: |-
-        The selected IP failed to associate
-      floating_unassigned_requires_pool: |-
-        You must specifiy a pool in floating_ip_pool when using associate_unassigned
-      orchestration_template_error: |-
-        There was an error while reading orchestration template.
-        Error: %{err}
-      orchestration_no_template_file_error: |-
-        Orchestration template file not found (%{fname}).
       server_not_destroyed: |-
-        OpenStack server was not fully destroyed.
+        Vmpooler server was not fully destroyed.
 
     states:
       short_active: |-

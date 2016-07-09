@@ -44,16 +44,35 @@ module VagrantPlugins
       # Internal methods
       # ----------------
 
-      def finalize!
+      def read_config
         conf_file = {}
         begin
           conf_file = YAML.load_file("#{Dir.home}/.vmfloaty.yml")
         rescue
           # vagrant debug?
         end
+        conf_file
+      end
 
-        @token = conf_file['token'] if conf_file['token']
-        @url = conf_file['url'] if conf_file['url']
+      def finalize!
+        conf_file = read_config
+
+        if conf_file['token']
+          @token = conf_file['token']
+        else
+          @token = nil
+        end
+
+        if conf_file['url']
+          @url = conf_file['url']
+        else
+          @url = nil
+        end
+
+        @verbose = false if @verbose == UNSET_VALUE
+        @os = nil if @os == UNSET_VALUE
+        @ttl = nil if @ttl == UNSET_VALUE
+        @disk = nil if @disk == UNSET_VALUE
       end
 
       # ----------------

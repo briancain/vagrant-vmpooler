@@ -1,5 +1,5 @@
 module VagrantPlugins
-  module Vmpooler
+module Vmpooler
     module Action
       class MessageAlreadyCreated
         def initialize(app, env)
@@ -7,7 +7,7 @@ module VagrantPlugins
         end
 
         def call(env)
-          env[:ui].info("This machine has already been created")
+          env[:ui].info(I18n.t("vagrant_vmpooler.already_created"))
           @app.call(env)
         end
       end

@@ -1,15 +1,14 @@
-require "log4r"
-
 module VagrantPlugins
   module Vmpooler
     module Action
-      class TerminateInstance
+      class IsPaused
         def initialize(app, env)
           @app = app
-          @logger = Log4r::Logger.new("vagrant_vmpooler::action::terminate_instance")
         end
 
         def call(env)
+          env[:result] = env[:machine].state.id == :paused
+          @app.call(env)
         end
       end
     end
