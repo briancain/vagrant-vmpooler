@@ -20,7 +20,6 @@ module VagrantPlugins
           machine = env[:machine]
           id = machine.id
 
-
           if id
             provider_config = machine.provider_config
             token = provider_config.token
@@ -29,8 +28,11 @@ module VagrantPlugins
 
             env[:ui].info(I18n.t("vagrant_vmpooler.deleting_server"))
 
-            response_body = Pooler.delete(verbose, url, id, token)
+            os = []
+            os.push(id)
+            response_body = Pooler.delete(verbose, url, os, token)
 
+            puts response_body
             if !response_body['ok']
               # todo: write this
               env[:ui].info(I18n.t("vagrant_vmpooler.not_deleted"))

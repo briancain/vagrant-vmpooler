@@ -48,7 +48,9 @@ module VagrantPlugins
           env[:ui].info(" -- Disk: #{disk}")
 
           # Create the server
-          server = Pooler.retrieve(verbose, os, token, url)
+          os_arr = {}
+          os_arr[os] = 1
+          server = Pooler.retrieve(verbose, os_arr, token, url)
 
           # Store the ID right away so we can track it
           # in this case it's the hostname
@@ -57,7 +59,7 @@ module VagrantPlugins
               :message => "Could not retrieve vm from pooler:\n #{server}"
           end
 
-          env[:machine].id = server[os]
+          env[:machine].id = server[os]["hostname"]
 
           # extend ttl and disk space here
           # response_body = Pooler.modify(verbose, url, server[os], token, ttl, nil)

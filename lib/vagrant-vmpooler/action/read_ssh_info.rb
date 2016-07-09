@@ -23,7 +23,7 @@ module VagrantPlugins
           return nil if id.nil?
 
           provider_config = machine.provider_config
-          verbse = provider_config.verbose
+          verbose = provider_config.verbose
           url = provider_config.url
 
           server = Pooler.query(verbose, url, id)

@@ -100,6 +100,10 @@ en:
         Vmpooler server was not fully destroyed.
 
     states:
+      short_created:
+        created
+      long_created:
+        The server has been created. Run `vagrant ssh` to access it.
       short_active: |-
         active
       long_active: |-
