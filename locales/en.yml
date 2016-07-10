@@ -79,11 +79,17 @@ en:
           A disk size is required for all disk specifications.
 
     errors:
-      :vmpooler_url_error: |-
+      failed_snapshot: |-
+        Could not snapshot server.
+      failed_ttl: |-
+        Could not extend TTL on vm.
+      failed_disk_extend: |-
+        Could not extend size of disk on vm.
+      vmpooler_url_error: |-
         No user was provided to connect to vmpooler.
-      :no_os_error: |-
+      no_os_error: |-
         No operatingsystem flavor was set.
-      :bad_request: |-
+      bad_request: |-
         Failed to make a request.
       create_bad_state: |-
         While creating the server, it transitioned to an unexpected
