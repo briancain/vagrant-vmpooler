@@ -14,7 +14,17 @@ module VagrantPlugins
           if env[:machine].id
             env[:ui].info(I18n.t("vagrant_vmpooler.snapshoting_server"))
             # make api call to snapshot server
+            provider_config = env[:machine].provider_config
 
+            token = provider_config.token
+            url = provider_config.url
+            verbose = provider_config.verbose
+            hostname = env[:machine].id
+            response = Pooler.snapshot(verbose, url, hostname, token)
+            if response['ok'] == false
+              env[:ui].info(I81n.t("vagrant_vmpooler.errors.failed_snapshot"))
+              env[:ui].info(response)
+            end
           end
 
           @app.call(env)
