@@ -7,7 +7,7 @@ module VagrantPlugins
         end
 
         def call(env)
-          env[:result] = env[:machine].state.id == :active
+          env[:result] = env[:machine].state.id == :created
           @app.call(env)
         end
       end
