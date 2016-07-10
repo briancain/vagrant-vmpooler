@@ -62,15 +62,14 @@ module VagrantPlugins
           server_name = server[os]["hostname"]
           env[:machine].id = server_name
 
-          # extend ttl and disk space here
-          if ! ttl.nil?
+          if ttl
             response_body = Pooler.modify(verbose, url, server_name, token, ttl, nil)
             if response_body['ok'] == false
               env[:ui].warn(I18n.t("vagrant_vmpooler.errors.failed_ttl"))
             end
           end
 
-          if ! disk.nil?
+          if disk
             response_body = Pooler.disk(verbose, url, server_name, token, disk)
             if response_body['ok'] == false
               env[:ui].warn(I18n.t("vagrant_vmpooler.errors.failed_disk_extend"))
