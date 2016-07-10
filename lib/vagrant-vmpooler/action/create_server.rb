@@ -41,11 +41,11 @@ module VagrantPlugins
 
           # Output the settings we're going to use to the user
           env[:ui].info(I18n.t("vagrant_vmpooler.launching_server"))
-          env[:ui].info(" -- Verbose: #{verbose}")
           env[:ui].info(" -- Vmpooler URL: #{url}")
+          env[:ui].info(" -- Vmpooler Verbose Mode: #{verbose}")
           env[:ui].info(" -- Image: #{os}")
-          env[:ui].info(" -- TTL: #{ttl}") if ttl
-          env[:ui].info(" -- Disk: #{disk}") if disk
+          env[:ui].info(" -- Additional TTL: #{ttl}") if ttl
+          env[:ui].info(" -- Additional Disk: #{disk}") if disk
 
           # Create the server
           os_arr = {}
@@ -59,11 +59,23 @@ module VagrantPlugins
               :message => "Could not retrieve vm from pooler:\n #{server}"
           end
 
-          env[:machine].id = server[os]["hostname"]
+          server_name = server[os]["hostname"]
+          env[:machine].id = server_name
 
           # extend ttl and disk space here
-          # response_body = Pooler.modify(verbose, url, server[os], token, ttl, nil)
-          # response_body = Pooler.disk(verbose, url, server[os], token, disk)
+          if ! ttl.nil?
+            response_body = Pooler.modify(verbose, url, server_name, token, ttl, nil)
+            if response_body['ok'] == false
+              env[:ui].warn(I18n.t("vagrant_vmpooler.errors.failed_ttl"))
+            end
+          end
+
+          if ! disk.nil?
+            response_body = Pooler.disk(verbose, url, server_name, token, disk)
+            if response_body['ok'] == false
+              env[:ui].warn(I18n.t("vagrant_vmpooler.errors.failed_disk_extend"))
+            end
+          end
 
           if !env[:interrupted]
             # Clear the line one more time so the progress is removed
