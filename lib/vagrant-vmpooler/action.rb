@@ -118,14 +118,14 @@ module VagrantPlugins
           b.use Call, IsPaused do |env, b1|
             unless env[:result]
               b1.use Call, IsSuspended do |env2, b2|
-                raise "not implemented"
+                env[:ui].warn(I18n.t("vagrant_vmpooler.not_supported"))
                 #b2.use RebootServer
               end
             end
 
             b1.use Call, WaitForState, [:active], 120 do |env2, b2|
               unless env2[:result]
-                raise "not implemented"
+                env[:ui].warn(I18n.t("vagrant_vmpooler.not_supported"))
                 #b2.use HardRebootServer
               end
             end
@@ -139,7 +139,7 @@ module VagrantPlugins
           b.use ConfigValidate
           b.use Call, IsCreated do |env, b1|
             # throw error?
-            raise "This action not supported with vmpooler"
+            env[:ui].warn(I18n.t("vagrant_vmpooler.not_supported"))
           end
         end
       end
@@ -165,7 +165,7 @@ module VagrantPlugins
         Vagrant::Action::Builder.new.tap do |b|
           b.use ConfigValidate
           b.use Call, IsCreated do |env, b1|
-            raise "This action is not supported with vmpooler"
+            env[:ui].warn(I18n.t("vagrant_vmpooler.not_supported"))
           end
         end
       end
