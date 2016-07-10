@@ -32,10 +32,11 @@ module VagrantPlugins
             os.push(id)
             response_body = Pooler.delete(verbose, url, os, token)
 
-            puts response_body
-            if !response_body['ok']
-              # todo: write this
+            if response_body[id]['ok'] == false
               env[:ui].info(I18n.t("vagrant_vmpooler.not_deleted"))
+            else
+              env[:ui].info(I18n.t("vagrant_vmpooler.deleted"))
+              env[:machine].id = nil
             end
           else
             env[:ui].info(I18n.t("vagrant_vmpooler.not_created"))
