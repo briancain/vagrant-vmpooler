@@ -26,6 +26,12 @@ module VagrantPlugins
       # @return [String]
       attr_accessor :os
 
+      # The password to use to log
+      # into the vmpooler machine
+      #
+      # @return [String]
+      attr_accessor :password
+
       # How long the vm should stay
       # active for
       #
@@ -73,6 +79,7 @@ module VagrantPlugins
         @os = nil if @os == UNSET_VALUE
         @ttl = nil if @ttl == UNSET_VALUE
         @disk = nil if @disk == UNSET_VALUE
+        @password = nil if @password == UNSET_VALUE
       end
 
       # ----------------
@@ -86,6 +93,7 @@ module VagrantPlugins
         @os = UNSET_VALUE
         @ttl = UNSET_VALUE
         @disk = UNSET_VALUE
+        @password = UNSET_VALUE
       end
     end
   end

@@ -25,6 +25,7 @@ module VagrantPlugins
           provider_config = machine.provider_config
           verbose = provider_config.verbose
           url = provider_config.url
+          password = provider_config.password
 
           server = Pooler.query(verbose, url, id)
           if server['ok'] == false
@@ -33,7 +34,13 @@ module VagrantPlugins
             machine.id = nil
             return nil
           else
-            return server[id]
+            ssh_info = {
+              :host => id,
+              :username => 'root',
+              :password => password
+            }
+            ssh_info.merge! server[id]
+            return ssh_info
           end
         end
       end

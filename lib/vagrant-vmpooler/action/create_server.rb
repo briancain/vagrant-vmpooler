@@ -44,8 +44,8 @@ module VagrantPlugins
           env[:ui].info(" -- Verbose: #{verbose}")
           env[:ui].info(" -- Vmpooler URL: #{url}")
           env[:ui].info(" -- Image: #{os}")
-          env[:ui].info(" -- TTL: #{ttl}")
-          env[:ui].info(" -- Disk: #{disk}")
+          env[:ui].info(" -- TTL: #{ttl}") if ttl
+          env[:ui].info(" -- Disk: #{disk}") if disk
 
           # Create the server
           os_arr = {}
