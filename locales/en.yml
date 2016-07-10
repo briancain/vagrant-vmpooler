@@ -77,6 +77,12 @@ en:
           A disk size is required for all disk specifications.
 
     errors:
+      :vmpooler_url_error: |-
+        No user was provided to connect to vmpooler.
+      :no_os_error: |-
+        No operatingsystem flavor was set.
+      :bad_request: |-
+        Failed to make a request.
       create_bad_state: |-
         While creating the server, it transitioned to an unexpected
         state: '%{state}', instead of properly booting. Run `vagrant status`
