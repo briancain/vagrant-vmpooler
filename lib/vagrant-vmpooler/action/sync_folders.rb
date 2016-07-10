@@ -27,7 +27,7 @@ module VagrantPlugins
             end
 
             unless Vagrant::Util::Which.which('rsync')
-              @logger.info "please install rsync first"
+              @logger.info "please install rsync locally first"
               break
             end
 
