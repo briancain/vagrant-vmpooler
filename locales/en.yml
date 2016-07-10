@@ -1,8 +1,8 @@
 en:
   vagrant_vmpooler:
-    deleted:
+    deleted: |-
       The server was deleted.
-    not_deleted:
+    not_deleted: |-
       The server was not deleted.
     already_created: |-
       The server is already created.
