@@ -1,7 +1,6 @@
 # -*- mode: ruby -*-
 # vi: set ft=ruby :
 
-
 # Provisioning script
 provision_script = <<SCRIPT
 #!/bin/bash
