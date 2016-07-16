@@ -22,6 +22,10 @@ module VagrantPlugins
       class RsyncError < VagrantVmpoolerErrors
         error_key(:rsync_error)
       end
+
+      class RsyncError < VagrantVmpoolerErrors
+        error_key(:install_rsync_error)
+      end
     end
   end
 end

@@ -88,6 +88,7 @@ module VagrantPlugins
             unless env[:result]
               b1.use action_prepare_boot
               b1.use CreateServer
+              b1.use SetupRsync
             else
               b1.use action_resume
             end
@@ -205,6 +206,7 @@ module VagrantPlugins
       autoload :SyncFolders, action_root.join("sync_folders")
       autoload :TakeSnapshot, action_root.join("take_snapshot")
       autoload :WaitForState, action_root.join("wait_for_state")
+      autoload :SetupRsync, action_root.join("setup_rsync")
     end
   end
 end
