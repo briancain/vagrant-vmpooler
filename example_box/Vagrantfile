@@ -17,5 +17,6 @@ Vagrant.configure("2") do |config|
     vmpooler.os = "centos-7-x86_64"
     #vmpooler.os = "ubuntu-1604-x86_64"
     vmpooler.ttl = 24
+    vmpooler.password = "Qu@lity!"
   end
 end

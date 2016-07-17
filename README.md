@@ -8,7 +8,7 @@ Work in progress
 
 * Quickly provision virtual machines with vmpooler and vagrant
 * SSH into machines
-* Provision the instances with any built-int Vagrant provisioner
+* Provision the instances with any built-in Vagrant provisioner
 * Sync folders with Rsync
 * Built off of the [vmfloaty](https://github.com/briancain/vmfloaty) library, using the [vmpooler](https://github.com/puppetlabs/vmpooler) api
 
