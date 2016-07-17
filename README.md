@@ -2,6 +2,8 @@
 
 Work in progress
 
+[![Gem Version](https://badge.fury.io/rb/vagrant-vmpooler.svg)](https://badge.fury.io/rb/vagrant-vmpooler)
+
 ### Features
 
 * Quickly provision virtual machines with vmpooler and vagrant
