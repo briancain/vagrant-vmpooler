@@ -59,10 +59,6 @@ en:
     will_not_destroy: |-
         The instance '%{name}' will not be destroyed, since the confirmation
         was declined.
-    creating_orchestration_stack: |-
-        Creating orchestration stack...
-    deleting_orchestration_stacks: |-
-        Deleting orchestration stacks...
     config:
       api_key_required: |-
         An API key is required.
