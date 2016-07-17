@@ -77,6 +77,8 @@ en:
           A disk size is required for all disk specifications.
 
     errors:
+      no_install_rsync: |-
+        Did not install rsync
       install_rsync_error: |-
         Could not properly install Rsync on host provided
       failed_snapshot: |-

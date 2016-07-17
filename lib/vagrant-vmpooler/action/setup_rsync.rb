@@ -14,8 +14,7 @@ module VagrantPlugins
           elsif os_flavor =~ /debian|ubuntu/i
             cmd_install_rsync = "apt-get install rsync -y"
           else
-            raise Errors::CannotSetupRsync,
-              :message => "Could not install rsync on os provided"
+            cmd_install_rsync = nil
           end
 
           cmd_install_rsync
@@ -26,8 +25,13 @@ module VagrantPlugins
           os_flavor = env[:machine].provider_config.os
           cmd_install_rsync = determine_packman(os_flavor)
 
-          env[:ui].info(I18n.t("vagrant_vmpooler.install_rsync"))
-          env[:machine].communicate.execute(cmd_install_rsync, :error_check => true)
+          if cmd_install_rsync
+            env[:ui].info(I18n.t("vagrant_vmpooler.install_rsync"))
+            env[:machine].communicate.execute(cmd_install_rsync, :error_check => true)
+          else
+            env[:ui].warn(I18n.t("vagrant_vmpooler.no_install_rsync"))
+          end
+
           @app.call(env)
         end
       end
