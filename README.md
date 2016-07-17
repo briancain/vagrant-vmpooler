@@ -114,3 +114,29 @@ Both of the commands are not supported in this plugin since vmpooler gives no ap
 vagrant-vmpooler assumes that it will be logging in as root or Administrator (windows) to any vmpooler vm.
 
 ## Development
+
+To work on the `vagrant-vmpooler` plugin, clone this repository out, and use
+[Bundler](http://gembundler.com) to get the dependencies:
+
+```
+$ bundle
+```
+
+Once you have the dependencies, verify the unit tests pass with `rake`:
+
+```
+$ bundle exec rake
+```
+
+If those pass, you're ready to start developing the plugin. You can test
+the plugin without installing it into your Vagrant environment by just
+creating a `Vagrantfile` in the top level of this directory (it is gitignored)
+and add the following line to your `Vagrantfile`
+
+```ruby
+Vagrant.require_plugin "vagrant-vmpooler"
+```
+Use bundler to execute Vagrant:
+```
+$ bundle exec vagrant up --provider=vmpooler
+```
