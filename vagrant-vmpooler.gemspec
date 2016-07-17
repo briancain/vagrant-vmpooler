@@ -13,4 +13,6 @@ Gem::Specification.new do |s|
   s.description   = "Enables Vagrant to manage machines in vmpooler."
 
   s.add_runtime_dependency "vmfloaty", ">= 0.4.0"
+
+  s.add_development_dependency "rspec-its"
 end
