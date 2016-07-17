@@ -1,6 +1,6 @@
 # Vagrant Vmpooler Provider
 
-Work in progress
+vagrant-vmpooler is still a work in progress and a lot of things might not work at the moment. If you find a bug, feel free to open up an issue on this repository.
 
 [![Gem Version](https://badge.fury.io/rb/vagrant-vmpooler.svg)](https://badge.fury.io/rb/vagrant-vmpooler)
 
