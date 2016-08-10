@@ -85,6 +85,8 @@ en:
         Could not snapshot server.
       failed_ttl: |-
         Could not extend TTL on vm.
+      failed_tags: |-
+        Failed to tag vm.
       failed_disk_extend: |-
         Could not extend size of disk on vm.
       vmpooler_url_error: |-

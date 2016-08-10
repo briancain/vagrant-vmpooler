@@ -62,6 +62,14 @@ module VagrantPlugins
           server_name = server[os]["hostname"]
           env[:machine].id = server_name
 
+          tags = {}
+          tags['vagrant-vmpooler'] = VagrantPlugins::Vmpooler::VERSION
+
+          response_body = Pooler.modify(verbose, url, server_name, token, nil, tags)
+          if response_body['ok'] == false
+            env[:ui].warn(I18n.t("vagrant_vmpooler.errors.failed_tag"))
+          end
+
           if ttl
             response_body = Pooler.modify(verbose, url, server_name, token, ttl, nil)
             if response_body['ok'] == false
