@@ -1,4 +1,5 @@
 require "vmfloaty/pooler"
+require "vagrant-vmpooler/version"
 require "log4r"
 
 require 'vagrant/util/retryable'
