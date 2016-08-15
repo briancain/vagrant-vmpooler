@@ -5,7 +5,7 @@ en:
     not_supported: |-
       This action not supported with vagrant-vmpooler
     deleted: |-
-      The server was deleted.
+      The pooler vm was destroyed.
     not_deleted: |-
       The server was not deleted.
     already_created: |-

@@ -13,11 +13,12 @@ module VagrantPlugins
         end
 
         def call(env)
-          env[:machine_state_id] = read_state(env[:machine])
+          env[:machine_state_id] = read_state(env)
           @app.call(env)
         end
 
-        def read_state(machine)
+        def read_state(env)
+          machine = env[:machine]
           id = machine.id
           return :not_created if id.nil?
 
@@ -27,7 +28,11 @@ module VagrantPlugins
 
           server = Pooler.query(verbose, url, id)
           if server['ok'] == false
-            @logger.info(I18n.t("vagrant_vmpooler.not_created"))
+            env[:ui].warn(I18n.t("vagrant_vmpooler.not_created"))
+            machine.id = nil
+            return :not_created
+          elsif server[id]["state"] == "destroyed"
+            env[:ui].warn(I18n.t("vagrant_vmpooler.deleted"))
             machine.id = nil
             return :not_created
           end
