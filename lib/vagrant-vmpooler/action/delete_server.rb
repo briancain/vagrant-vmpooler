@@ -33,6 +33,9 @@ module VagrantPlugins
             response_body = Pooler.delete(verbose, url, os, token)
 
             if response_body[id]['ok'] == false
+              # the only way this can happen is if the vm existed at one point
+              # but got deleted from vmpoolers redis db. We should probably
+              # still delete it from vagrants internal state if this is true
               env[:ui].info(I18n.t("vagrant_vmpooler.not_deleted"))
             else
               env[:ui].info(I18n.t("vagrant_vmpooler.deleted"))
