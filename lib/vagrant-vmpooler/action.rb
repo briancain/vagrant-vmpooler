@@ -89,6 +89,7 @@ module VagrantPlugins
               b1.use action_prepare_boot
               b1.use CreateServer
               b1.use SetupRsync
+              b1.use DisableTty
             else
               b1.use action_resume
             end
@@ -207,6 +208,7 @@ module VagrantPlugins
       autoload :TakeSnapshot, action_root.join("take_snapshot")
       autoload :WaitForState, action_root.join("wait_for_state")
       autoload :SetupRsync, action_root.join("setup_rsync")
+      autoload :DisableTty, action_root.join("disable_tty")
     end
   end
 end

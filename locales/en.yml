@@ -1,5 +1,7 @@
 en:
   vagrant_vmpooler:
+    disable_tty: |-
+      Disabling tty...
     install_rsync: |-
       Installing rsync...
     not_supported: |-

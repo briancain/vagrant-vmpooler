@@ -44,8 +44,7 @@ SCRIPT
 Vagrant.configure("2") do |config|
   config.vm.box = "dummy"
 
-  # vagrant-vmpooler already assumes you are root
-  config.vm.provision :shell, :inline => provision_script, privileged: false
+  config.vm.provision :shell, :inline => provision_script
 
   config.vm.provider :vmpooler do |vmpooler|
     vmpooler.os = "centos-7-x86_64"
