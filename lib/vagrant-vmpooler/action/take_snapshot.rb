@@ -20,10 +20,15 @@ module VagrantPlugins
             url = provider_config.url
             verbose = provider_config.verbose
             hostname = env[:machine].id
-            response = Pooler.snapshot(verbose, url, hostname, token)
-            if response['ok'] == false
+            begin
+              response = Pooler.snapshot(verbose, url, hostname, token)
+              if response['ok'] == false
+                env[:ui].info(I81n.t("vagrant_vmpooler.errors.failed_snapshot"))
+                env[:ui].info(response)
+              end
+            rescue TokenError => e
+              env[:ui].warn(I18n.t("vagrant_vmpooler.errors.no_token_error"))
               env[:ui].info(I81n.t("vagrant_vmpooler.errors.failed_snapshot"))
-              env[:ui].info(response)
             end
           end
 
