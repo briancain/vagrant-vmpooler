@@ -66,21 +66,38 @@ module VagrantPlugins
           tags = {}
           tags['vagrant-vmpooler'] = VagrantPlugins::Vmpooler::VERSION
 
-          response_body = Pooler.modify(verbose, url, server_name, token, nil, tags)
-          if response_body['ok'] == false
-            env[:ui].warn(I18n.t("vagrant_vmpooler.errors.failed_tag"))
+          begin
+            response_body = Pooler.modify(verbose, url, server_name, token, nil, tags)
+            if response_body['ok'] == false
+              env[:ui].warn(I18n.t("vagrant_vmpooler.errors.failed_tag"))
+            end
+          rescue TokenError => e
+            env[:ui].warn(I18n.t("vagrant_vmpooler.errors.no_token_error"))
+            env[:ui].warn(I18n.t("vagrant_vmpooler.errors.failed_tags"))
           end
 
+
           if ttl
-            response_body = Pooler.modify(verbose, url, server_name, token, ttl, nil)
-            if response_body['ok'] == false
+            begin
+              response_body = Pooler.modify(verbose, url, server_name, token, ttl, nil)
+              if response_body['ok'] == false
+                env[:ui].warn(I18n.t("vagrant_vmpooler.errors.failed_ttl"))
+              end
+            rescue TokenError => e
+              env[:ui].warn(I18n.t("vagrant_vmpooler.errors.no_token_error"))
               env[:ui].warn(I18n.t("vagrant_vmpooler.errors.failed_ttl"))
             end
           end
 
           if disk
-            response_body = Pooler.disk(verbose, url, server_name, token, disk)
-            if response_body['ok'] == false
+            begin
+              response_body = Pooler.disk(verbose, url, server_name, token, disk)
+
+              if response_body['ok'] == false
+                env[:ui].warn(I18n.t("vagrant_vmpooler.errors.failed_disk_extend"))
+              end
+            rescue TokenError => e
+              env[:ui].warn(I18n.t("vagrant_vmpooler.errors.no_token_error"))
               env[:ui].warn(I18n.t("vagrant_vmpooler.errors.failed_disk_extend"))
             end
           end
