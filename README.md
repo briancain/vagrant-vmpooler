@@ -47,6 +47,7 @@ Vagrant.configure("2") do |config|
   config.vm.provision :shell, :inline => provision_script
 
   config.vm.provider :vmpooler do |vmpooler|
+    vmpooler.url = "https://vmpooler.com/api/v1"
     vmpooler.os = "centos-7-x86_64"
     vmpooler.ttl = 24
     vmpooler.password = "secretpassword"
