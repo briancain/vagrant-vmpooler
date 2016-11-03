@@ -94,7 +94,7 @@ en:
       failed_disk_extend: |-
         Could not extend size of disk on vm.
       vmpooler_url_error: |-
-        No user was provided to connect to vmpooler.
+        No url was provided to connect to vmpooler.
       no_os_error: |-
         No operatingsystem flavor was set.
       bad_request: |-

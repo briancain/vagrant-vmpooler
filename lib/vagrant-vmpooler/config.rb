@@ -63,23 +63,29 @@ module VagrantPlugins
       def finalize!
         conf_file = read_config
 
-        if conf_file['token']
-          @token = conf_file['token']
-        else
-          @token = nil
+        # if conf_file is false the file
+        # exists but there are no keys inside it
+        if conf_file != false
+          if conf_file['token']
+            @token = conf_file['token']
+          else
+            @token = nil
+          end
+
+          if conf_file['url']
+            @url = conf_file['url']
+          else
+            @url = nil
+          end
         end
 
-        if conf_file['url']
-          @url = conf_file['url']
-        else
-          @url = nil
-        end
-
+        @url = nil if @url == UNSET_VALUE
         @verbose = false if @verbose == UNSET_VALUE
         @os = nil if @os == UNSET_VALUE
         @ttl = nil if @ttl == UNSET_VALUE
         @disk = nil if @disk == UNSET_VALUE
         @password = nil if @password == UNSET_VALUE
+        @token = nil if @token == UNSET_VALUE
       end
 
       # ----------------
