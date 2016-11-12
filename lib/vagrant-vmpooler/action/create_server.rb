@@ -19,6 +19,8 @@ module VagrantPlugins
           # Get the configs
           provider_config = env[:machine].provider_config
 
+          machine_name = env[:machine].name
+
           token = provider_config.token
           url = provider_config.url
           os = provider_config.os
@@ -65,6 +67,7 @@ module VagrantPlugins
 
           tags = {}
           tags['vagrant-vmpooler'] = VagrantPlugins::Vmpooler::VERSION
+          tags['machine-name'] = machine_name
 
           begin
             response_body = Pooler.modify(verbose, url, server_name, token, nil, tags)
