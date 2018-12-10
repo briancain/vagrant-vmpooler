@@ -70,7 +70,7 @@ module VagrantPlugins
           tags['machine-name'] = machine_name
 
           begin
-            response_body = Pooler.modify(verbose, url, server_name, token, nil, tags)
+            response_body = Pooler.modify(verbose, url, server_name, token, tags: tags)
             if response_body['ok'] == false
               env[:ui].warn(I18n.t("vagrant_vmpooler.errors.failed_tag"))
             end
@@ -82,7 +82,7 @@ module VagrantPlugins
 
           if ttl
             begin
-              response_body = Pooler.modify(verbose, url, server_name, token, ttl, nil)
+              response_body = Pooler.modify(verbose, url, server_name, token, lifetime: ttl)
               if response_body['ok'] == false
                 env[:ui].warn(I18n.t("vagrant_vmpooler.errors.failed_ttl"))
               end

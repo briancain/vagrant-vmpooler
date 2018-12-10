@@ -41,8 +41,9 @@ module VagrantPlugins
               username = 'root'
             end
 
+            host = server[id]['domain'].nil? ? id : "#{id}.#{server[id]['domain']}"
             ssh_info = {
-              :host => id,
+              :host => host,
               :username => username,
               :password => password
             }

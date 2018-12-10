@@ -18,7 +18,7 @@ module VagrantPlugins
         Config
       end
 
-      provider(:vmpooler, parallel:true) do
+      provider(:vmpooler, parallel: true, box_optional: true) do
         Vmpooler.init_i18n
         Vmpooler.init_logging
 
